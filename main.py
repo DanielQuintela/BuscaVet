@@ -159,7 +159,7 @@ def view_all_especies():
     return data
 
 paginaSelecionada = st.sidebar.selectbox('Selecione o caminho',
-                                         ['Tela de inicio', 'Login', 'Login Secretária',
+                                         ['Tela de inicio', 'Login',
                                           'Login Presidente', 'Área do Gerente de TI'])
 
 if paginaSelecionada == 'Tela de inicio':
@@ -170,10 +170,10 @@ if paginaSelecionada == 'Tela de inicio':
 
 elif paginaSelecionada == 'Login':
     st.sidebar.title("Seja Bem vindo !")
-    funcionarios = st.sidebar.selectbox('Selecione o caminho', ['Login', 'Cadastro'])
+    funcionarios = st.sidebar.selectbox('Selecione a Opção', ['Login', 'Cadastro'])
 
     if funcionarios == 'Login':
-        nome = st.sidebar.text_input('Insira seu nome')
+        nome = st.sidebar.text_input('Insira seu E-mail')
         senha = st.sidebar.text_input('Insira a senha', type='password')
         if st.sidebar.checkbox('Login'):
             # if input_senha_func == '1234':
@@ -190,7 +190,7 @@ elif paginaSelecionada == 'Login':
                     st.title('Página inicial do pesquisador')
                     st.text('Selecione uma opção acima para começar os trabalhos !!')
                 
-            if result2:
+            elif result2:
                 st.sidebar.title('Secretária logada')
                 st.title("Área da Secretária")
                
