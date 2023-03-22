@@ -81,27 +81,7 @@ if paginaSelecionada == 'Tela de inicio':
 
 elif paginaSelecionada == 'Login e/ou Cadastro':
     st.sidebar.title("Seja Bem vindo !")
-    funcionarios = st.sidebar.selectbox('Selecione a Opção', ['Login', 'Cadastro'])
-    login, cadastro = st.sidebar.tabs(["Login", "Cadastro"])
-    with cadastro:
-        st.title('Seja Bem vindo a tela Cadastro')
-        st.text('Caso queira se inscrever como veterinário, selecionar abaixo:')
-        usuario, veterinario = st.tabs(["Usuário", "Veterinário"])
-        with usuario:
-            input_email = st.text_input(label='Insira seu e-mail')
-            input_name = st.text_input(label='Insira o seu nome completo')
-            input_senha = st.text_input(label='Defina uma senha', type="password")
-            input_cpf = st.text_input(label='Insira o seu CPF')
-            input_telefone = st.text_input(label='Insira o seu telefone')
-
-            if st.button("Cadastrar"):
-                create_usertable()
-                add_user(input_email,input_name, input_senha, input_cpf, input_telefone)
-                st.success('Adicionado com sucesso !!')
-                st.info("Vá para o menu de login!!")
-        with login:
-            st.text('funcionou')
-        
+    funcionarios = st.sidebar.tabs('Selecione a Opção', ['Login', 'Cadastro'])        
 
     if funcionarios == 'Cadastro':
         st.title('Seja Bem vindo a tela Cadastro')
