@@ -81,7 +81,7 @@ if paginaSelecionada == 'Tela de inicio':
 
 elif paginaSelecionada == 'Login e/ou Cadastro':
     st.sidebar.title("Seja Bem vindo !")
-    funcionarios = st.sidebar.tabs('Selecione a Opção', ['Login', 'Cadastro'])        
+    funcionarios = st.sidebar.selectbox('Selecione a Opção', ['Login', 'Cadastro'])        
 
     if funcionarios == 'Cadastro':
         st.title('Seja Bem vindo a tela Cadastro')
