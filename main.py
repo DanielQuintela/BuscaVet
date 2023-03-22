@@ -84,7 +84,7 @@ elif paginaSelecionada == 'Login e/ou Cadastro':
     funcionarios = st.sidebar.selectbox('Selecione a Opção', ['Login', 'Cadastro'])
     login, cadastro = st.sidebar.tabs(["Login", "Cadastro"])
     with cadastro:
-       st.title('Seja Bem vindo a tela Cadastro')
+        st.title('Seja Bem vindo a tela Cadastro')
         st.text('Caso queira se inscrever como veterinário, selecionar abaixo:')
         usuario, veterinario = st.tabs(["Usuário", "Veterinário"])
         with usuario:
