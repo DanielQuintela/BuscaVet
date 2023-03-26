@@ -68,7 +68,8 @@ def delete_vet(resultado):
     cursor.execute(f'DELETE FROM veterinario WHERE nome="{resultado}"')
     con.commit()
 
-
+with open('style.css') as f:
+    st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
 
 paginaSelecionada = st.sidebar.selectbox('Selecione o caminho',
                                          ['Tela de inicio', 'Login e/ou Cadastro'])
@@ -76,12 +77,18 @@ paginaSelecionada = st.sidebar.selectbox('Selecione o caminho',
 if paginaSelecionada == 'Tela de inicio':
     st.title('Tela principal')
     st.text('Em construção 🏗')
+    st.text('Abaixo uma demonstração de edição com css')
+    
+    col1, col2, col3 = st.columns(3)
+    col1.metric("Temperature", "70 °F", "1.2 °F")
+    col2.metric("Wind", "9 mph", "-8%")
+    col3.metric("Humidity", "86%", "4%")
 
 
 
 elif paginaSelecionada == 'Login e/ou Cadastro':
     st.sidebar.title("Seja Bem vindo !")
-    funcionarios = st.sidebar.selectbox('Selecione a Opção', ['Login', 'Cadastro'])        
+    funcionarios = st.sidebar.selectbox('Selecione a Opção', ['Login', 'Cadastro'])
 
     if funcionarios == 'Cadastro':
         st.title('Seja Bem vindo a tela Cadastro')
@@ -138,18 +145,24 @@ elif paginaSelecionada == 'Login e/ou Cadastro':
                 if area_pesq == 'Inicio':
                     st.title(f'Página inicial, Olá {nome2}')
                     st.text('Selecione uma opção acima para começar os trabalhos !!')
-                    gallery_tab, upload_tab, url_tab = st.tabs(["Gallery", "Upload", "Image URL"])
-                    with gallery_tab:
+                    algo1, algo2, algo3 = st.tabs(["Algo1", "Algo2", "Algo3"])
+                    with algo1:
                         st.title('Teste 1')
                         
-                    with upload_tab:
+                    with algo2:
                         st.title('Teste 2')
-                    with url_tab:
+                    with algo3:
                         st.title('Teste 3')
             elif result2:
                 nome2 = get_name_vet(nome)
                 st.sidebar.title(f'Veterinário {nome2} logado')
                 st.title(f"Bem vindo {nome2}, a Área do Veterinário ")
+
+                area = st.selectbox('Selecione um caminho', ['Inicio', 'Visualizar Tabela'])
+                if area == 'Inicio':
+                    st.text('inicio')
+                if area == 'Visualizar Tabela':
+                    st.text('tabela')
 
             elif senha == '0809':
                 area_mestre = st.selectbox('Selecione oque deseja',['Inicio','Adicionar Veterinário',
@@ -200,3 +213,5 @@ elif paginaSelecionada == 'Login e/ou Cadastro':
                 st.warning("Usuário incorreto ou Inexistente")
     
     
+
+
