@@ -4,7 +4,7 @@ import sqlite3
 import Banco.banco_dados as Banco
 
 def Cadastro():
-    st.title('Seja Bem vindo a tela Cadastro')
+    
     st.text('Caso queira se inscrever como veterinário, selecionar abaixo:')
     usuario, veterinario = st.tabs(["Usuário", "Veterinário"])
     with usuario:
