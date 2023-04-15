@@ -1,5 +1,6 @@
 import pandas as pd
 import streamlit as st
+st.set_page_config(page_title='BuscaVet', page_icon=':mag:')
 import sqlite3
 import Banco.banco_dados as Banco
 import Page.cadastro as PageCadastro , Page.usuario as PageUsuario, Page.veterinario as PageVeterinario, Page.adm as PageAdm
@@ -62,7 +63,8 @@ elif paginaSelecionada == 'Login e/ou Cadastro':
             clinica = ('nome','senha')
 
             if user:
-                #start.empty()
+                start.empty()
+                title.empty()
                 selectbox_placeholder.empty()
                 nome_place.empty()
                 senha_place.empty()
