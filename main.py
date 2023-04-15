@@ -19,7 +19,9 @@ def create_connection():
 with open('style.css') as f:
     st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
 
-paginaSelecionada = st.sidebar.selectbox('Selecione o caminho',
+start = st.sidebar.empty()
+
+paginaSelecionada = start.selectbox('Selecione o caminho',
                                          ['Tela de inicio', 'Login e/ou Cadastro'])
 
 if paginaSelecionada == 'Tela de inicio':
@@ -27,35 +29,65 @@ if paginaSelecionada == 'Tela de inicio':
     st.text('Em construção 🏗')
     
     
+    
 elif paginaSelecionada == 'Login e/ou Cadastro':
-    st.sidebar.title("Seja Bem vindo !")
-    funcionarios = st.sidebar.selectbox('Selecione a Opção', ['Login', 'Cadastro'])
+    title = st.empty()
+    titulo = title.title("Seja Bem vindo a Tela de Cadastro !")
+    selectbox_placeholder = st.sidebar.empty()
+    nome_place = st.empty()
+    senha_place = st.empty()
+    checkbox_placeholder = st.empty()
+    escolha = selectbox_placeholder.selectbox('Selecione a Opção', ['Login', 'Cadastro'])
 
-    if funcionarios == 'Cadastro':
+    if escolha == 'Cadastro':
         PageCadastro.Cadastro()
+   
                         
 
-    if funcionarios == 'Login':
-        nome = st.sidebar.text_input('Insira seu E-mail')
-        senha = st.sidebar.text_input('Insira a senha', type='password')
+    if escolha == 'Login':
+        titulo = title.title("Bem vindo de Volta !")
+        nome = nome_place.text_input('Insira seu E-mail')
+        senha = senha_place.text_input('Insira a senha', type='password')
         situacao = 'Aprovado'
-        if st.sidebar.checkbox('Login'):
-            # if input_senha_func == '1234':
+        marcado = checkbox_placeholder.checkbox('Login')
 
+        if marcado:
+            # if input_senha_func == '1234':
             Banco.create_usertable()
             Banco.create_veterinario()
             Banco.criar_clinica()
             user = Banco.login_user(nome, senha)
             vet = Banco.login_veterinario(nome, senha, situacao)
-
+            #clinica = Banco.login_clinica(nome, senha, situacao)
             clinica = ('nome','senha')
+
             if user:
-                PageUsuario.Usuario(nome)
+                #start.empty()
+                selectbox_placeholder.empty()
+                nome_place.empty()
+                senha_place.empty()
+                checkbox_placeholder.empty()
+
+                Page = PageUsuario.Usuario(nome)
+
                
             elif vet:
+                start.empty()
+                selectbox_placeholder.empty()
+                nome_place.empty()
+                senha_place.empty()
+                checkbox_placeholder.empty()
+
                 PageVeterinario.Veterinario(nome)
-        
-                
+
+
+            elif clinica:
+                start.empty()
+                selectbox_placeholder.empty()
+                nome_place.empty()
+                senha_place.empty()
+                checkbox_placeholder.empty()
+
 
             elif senha == '0809':
                 PageAdm.Adm()
