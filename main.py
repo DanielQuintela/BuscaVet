@@ -1,10 +1,11 @@
-import pandas as pd
 import streamlit as st
 st.set_page_config(page_title='BuscaVet', page_icon=':mag:')
+import pandas as pd
 import sqlite3
 import Banco.banco_dados as Banco
 import Page.cadastro as PageCadastro , Page.usuario as PageUsuario, Page.veterinario as PageVeterinario, Page.adm as PageAdm
 from sqlite3 import Error
+
 
 def create_connection():
     conn = None
@@ -16,14 +17,25 @@ def create_connection():
         print(e)
 
 
-
 with open('style.css') as f:
     st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
+
+
+if 'login' not in st.session_state:
+    st.session_state.login = False
+
+def aprovar():
+    st.session_state.login = True
+    return st.session_state.login
+
+def fechar():
+    st.session_state.login = False
+
 
 start = st.sidebar.empty()
 
 paginaSelecionada = start.selectbox('Selecione o caminho',
-                                         ['Tela de inicio', 'Login e/ou Cadastro'])
+                                         ['Tela de inicio', 'Login e/ou Cadastro'], key='selectbox1')
 
 if paginaSelecionada == 'Tela de inicio':
     st.title('Tela principal')
@@ -50,9 +62,12 @@ elif paginaSelecionada == 'Login e/ou Cadastro':
         nome = nome_place.text_input('Insira seu E-mail')
         senha = senha_place.text_input('Insira a senha', type='password')
         situacao = 'Aprovado'
-        marcado = checkbox_placeholder.checkbox('Login')
+        marcado = checkbox_placeholder.button('Login')
 
         if marcado:
+            aprovar()
+
+        if st.session_state.login:    
             # if input_senha_func == '1234':
             Banco.create_usertable()
             Banco.create_veterinario()
@@ -60,7 +75,7 @@ elif paginaSelecionada == 'Login e/ou Cadastro':
             user = Banco.login_user(nome, senha)
             vet = Banco.login_veterinario(nome, senha, situacao)
             #clinica = Banco.login_clinica(nome, senha, situacao)
-            clinica = ('nome','senha')
+            
 
             if user:
                 start.empty()
@@ -75,6 +90,7 @@ elif paginaSelecionada == 'Login e/ou Cadastro':
                
             elif vet:
                 start.empty()
+                title.empty()
                 selectbox_placeholder.empty()
                 nome_place.empty()
                 senha_place.empty()
@@ -83,15 +99,13 @@ elif paginaSelecionada == 'Login e/ou Cadastro':
                 PageVeterinario.Veterinario(nome)
 
 
-            elif clinica:
+            elif senha == '0809':
                 start.empty()
-                selectbox_placeholder.empty()
+                title.empty()
+                
                 nome_place.empty()
                 senha_place.empty()
                 checkbox_placeholder.empty()
-
-
-            elif senha == '0809':
                 PageAdm.Adm()
                             
                 
