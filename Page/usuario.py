@@ -1,7 +1,7 @@
 import pandas as pd
 import streamlit as st
 import sqlite3
-import Banco.banco_dados as Banco
+import Banco.banco_dados as Banco, main
 con = sqlite3.connect('banco_programa.db')
 cursor = con.cursor()
 
@@ -10,14 +10,20 @@ def Usuario(nome):
     
     nome2 = Banco.get_name(nome)
     st.sidebar.title(f"Entrou como: {nome2}")
+    sair = st.sidebar.button('Sair')
     area_pesq =selectbox_placeholder.selectbox('Selecione o que deseja',['Inicio'])
     if area_pesq == 'Inicio':
         st.title(f'Página inicial, Olá {nome2}')
-        algo1, algo2, algo3 = st.tabs(["Algo1", "Algo2", "Algo3"])
-        with algo1:
-            st.title('Teste 1')
+        meus_pets, em_andamento, Histórico_servico = st.tabs(["Meus Pets", "Histórico de Serviços", "Em Andamento"])
+        with meus_pets:
+            st.title('Pets')
+
+
             
-        with algo2:
+        with em_andamento:
             st.title('Teste 2')
-        with algo3:
+
+        with Histórico_servico:
             st.title('Teste 3')
+    if sair:
+        main.fechar()
