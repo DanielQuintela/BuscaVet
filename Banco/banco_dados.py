@@ -93,8 +93,14 @@ def get_name_vet(email):
     data = cursor.fetchall()
     cursor.close()
     con.close()
-    return str(data[0][0]) if data else None
-
+    if data:
+        nome_completo = str(data[0][0])
+        lista_nomes = nome_completo.split()
+        nome_abreviado = ' '.join(lista_nomes[:2])
+        return nome_abreviado
+    else:
+        return None
+    
 def situacao():
     con = sqlite3.connect('banco_programa.db')
     cursor = con.cursor()
@@ -156,7 +162,7 @@ def login_clinica(email, senha, situacao):
     con.close()
     return data
 
-def get_name_vet(email):
+def get_name_cli(email):
     con = sqlite3.connect('banco_programa.db')
     cursor = con.cursor()
     cursor.execute('SELECT nome FROM clinica WHERE email = ?', (email,))
