@@ -34,7 +34,3 @@ def Veterinario(nome):
     if sair:
         main.fechar()
             
-       
-
-    
-       
