@@ -1,5 +1,5 @@
 import streamlit as st
-st.set_page_config(page_title='BuscaVet', page_icon=':mag:')
+
 import pandas as pd
 import sqlite3
 import Banco.banco_dados as Banco
