@@ -1,5 +1,5 @@
 import streamlit as st
-
+st.set_page_config(page_title='BuscaVet', page_icon=':mag:')
 import pandas as pd
 import sqlite3
 import Banco.banco_dados as Banco
@@ -35,7 +35,7 @@ def fechar():
 start = st.sidebar.empty()
 
 paginaSelecionada = start.selectbox('Selecione o caminho',
-                                         ['Tela de inicio', 'Login e/ou Cadastro'], key='selectbox2')
+                                         ['Tela de inicio', 'Login e/ou Cadastro'], key='selectbox3')
 
 if paginaSelecionada == 'Tela de inicio':
     st.title('Tela principal')
