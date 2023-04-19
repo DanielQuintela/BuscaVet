@@ -35,11 +35,12 @@ def fechar():
 start = st.sidebar.empty()
 
 paginaSelecionada = start.selectbox('Selecione o caminho',
-                                         ['Tela de inicio', 'Login e/ou Cadastro'], key='selectbox1')
+                                         ['Tela de inicio', 'Login e/ou Cadastro'], key='selectbox2')
 
 if paginaSelecionada == 'Tela de inicio':
     st.title('Tela principal')
     st.text('Em construção 🏗')
+   
     
     
     
@@ -112,4 +113,4 @@ elif paginaSelecionada == 'Login e/ou Cadastro':
             else:
                 st.warning("Usuário incorreto ou Inexistente")
     
-    
+   
