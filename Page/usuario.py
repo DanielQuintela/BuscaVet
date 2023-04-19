@@ -18,12 +18,12 @@ def Usuario(nome):
         with meus_pets:
             st.title('Pets')
 
-
             
         with em_andamento:
             st.title('Teste 2')
 
         with Histórico_servico:
             st.title('Teste 3')
+    
     if sair:
         main.fechar()
