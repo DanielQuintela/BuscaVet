@@ -16,7 +16,7 @@ def create_usertable():
     con = sqlite3.connect('banco_programa.db')
     cursor = con.cursor()
     cursor.execute(
-        'CREATE TABLE IF NOT EXISTS usuario(email TEXT, nome TEXT,senha TEXT, cpf NUMERIC UNIQUE, telefone NUMERIC UNIQUE)')
+        'CREATE TABLE IF NOT EXISTS usuario(email TEXT UNIQUE, nome TEXT,senha TEXT, cpf NUMERIC UNIQUE, telefone NUMERIC UNIQUE)')
     cursor.close()
     con.close()
 
@@ -55,8 +55,37 @@ def get_name(email):
         return nome_abreviado
     else:
         return None
-    
 
+# Ainda nas funções de usuario
+# criando a função de adicionar pet ao banco
+def create_pet():
+    con = sqlite3.connect('banco_programa.db')
+    cursor = con.cursor()
+    cursor.execute(
+        'CREATE TABLE IF NOT EXISTS pet(dono TEXT, nome TEXT, raca TEXT,cor TEXT, idade NUMERIC)')
+    cursor.close()
+    con.close()
+
+def add_pet(dono, nome, raca, cor, idade):
+    con = sqlite3.connect('banco_programa.db')
+    cursor = con.cursor()
+    cursor.execute(
+        'INSTERT INTO pet(dono, nome, raca, cor, idade) VALUES (?,?,?,?,?)', (dono, nome, raca, cor, idade))
+    con.commit()
+    cursor.close()
+    con.close()
+
+
+def consulta_pet(dono):
+    con = sqlite3.connect('banco_programa.db')
+    cursor = con.cursor()
+    cursor.execute(
+        'SELECT * FROM pet WHERE dono = ? ', (dono)
+    )
+    data = cursor.fetchall()
+    cursor.close()
+    con.close()
+    return data
 
 #criar no banco o veterinário
 
