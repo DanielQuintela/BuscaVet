@@ -11,11 +11,11 @@ def Adm():
 
     if area_mestre == 'Adicionar Veterinário':
         st.title('Vamos adicionar o mais novo Veterinário ao Sistema')
-        input_email = st.text_input(label='Coloque o email')
-        input_name = st.text_input(label='Insira o nome')
-        input_senha = st.text_input(label='Digite a senha', type='password')
-        input_crmv = st.text_input(label='Insira o crmv')
-        input_telefone = st.text_input(label='Insira o seu telefone')
+        input_email = st.text_input(label='Coloque o email', key='22')
+        input_name = st.text_input(label='Insira o nome', key='23')
+        input_senha = st.text_input(label='Digite a senha', type='password', key='24')
+        input_crmv = st.text_input(label='Insira o crmv', key='25')
+        input_telefone = st.text_input(label='Insira o seu telefone', key='26')
         situacao= 'Aprovado'
 
         if st.button('Cadastrar Veterinário'):
