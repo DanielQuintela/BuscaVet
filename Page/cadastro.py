@@ -4,8 +4,9 @@ import sqlite3
 import Banco.banco_dados as Banco
 
 def Cadastro():
-  
-    st.text('Caso queira se inscrever como veterinário, selecionar abaixo:')
+
+    st.subheader(""" Caso queira se inscrever como veterinário, selecionar abaixo:
+              """)
     usuario, veterinario = st.tabs(["Usuário", "Veterinário"])
     with usuario:
         input_email = st.text_input(label='Insira seu e-mail')
