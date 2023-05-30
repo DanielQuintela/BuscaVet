@@ -6,10 +6,10 @@ con = sqlite3.connect('banco_programa.db')
 cursor = con.cursor()
 checkbox_placeholder = st.empty()
 
-def Veterinario(nome):
-    nome2 = Banco.get_name_vet(nome)
+def Veterinario(email):
+    nome2 = Banco.get_name_vet(email)
     st.sidebar.title(f'Veterinário {nome2}')
-    area = st.sidebar.selectbox('Selecione um caminho', ['Inicio', 'Visualizar Tabela', 'Cadastrar Clínica'])
+    area = st.sidebar.selectbox('Selecione um caminho', ['Inicio', 'Alterar dados', 'Cadastrar Clínica'])
     sair = st.sidebar.button('Sair')
     st.title(f"Bem vindo {nome2}, a Área do Veterinário ")
     
@@ -26,8 +26,15 @@ def Veterinario(nome):
         with Histórico_servico:
             st.title('Teste 3')
             
-    if area == 'Visualizar Tabela':
-        st.text('tabela')
+    if area == 'Alterar dados':
+        st.title('Cadastre seus dados específicos')
+        input_localidade = st.text_input(label='Insira sua Localidade de atuação')
+        input_especialidade = st.text_input(label='Qual sua especialidade')
+
+        if st.button('Salvar'):
+            Banco.especialidade(email, input_especialidade, input_localidade)
+            especialidade = Banco.busca_especialidade(email)
+            st.text(f'Sua especilidade é {especialidade}')
     if area == 'Cadastrar Clínica':
         st.title("Seja bem vindo a tela de cadastro de Clínicas")
         
@@ -36,6 +43,4 @@ def Veterinario(nome):
             
        
 
-    
-        
-
+   
