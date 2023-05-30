@@ -86,9 +86,10 @@ if st.session_state.login:
         PageVeterinario.Veterinario(nome)
 
 
-    elif senha == '123':
+    elif senha == '0987':
         titulo.empty()
         texto.empty()
+        start_bar.empty()
         checkbox_placeholder.empty()
         PageAdm.Adm()
                     
@@ -96,4 +97,3 @@ if st.session_state.login:
     else:
         st.warning("Usuário incorreto ou Inexistente")
 
-       
