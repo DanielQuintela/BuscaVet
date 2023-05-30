@@ -93,7 +93,7 @@ def create_veterinario():
     con = sqlite3.connect('banco_programa.db')
     cursor = con.cursor()
     cursor.execute(
-        'CREATE TABLE IF NOT EXISTS veterinario(email TEXT, nome TEXT,senha TEXT, crmv NUMERIC UNIQUE, telefone NUMERIC UNIQUE, situacao TEXT)')
+        'CREATE TABLE IF NOT EXISTS veterinario(email TEXT, nome TEXT,senha TEXT, crmv NUMERIC UNIQUE, telefone NUMERIC UNIQUE, situacao TEXT, especialidade TEXT, localidade TEXT)')
     cursor.close()
     con.close()
     
@@ -105,6 +105,26 @@ def add_veterinario(email, nome, senha, crmv, telefone,situacao = 'Espera'):
     con.commit()
     cursor.close()
     con.close()
+    # Adicionar a especialidade do médico e a localidade
+def especialidade(email, especialidade, localidade):
+    con = sqlite3.connect('banco_programa.db')
+    cursor = con.cursor()
+    cursor.execute('UPDATE veterinario SET especialidade = ?, localidade = ? WHERE email = ?', (especialidade, localidade, email))
+    con.commit()
+    cursor.close()
+    con.close()
+
+def busca_especialidade(email):
+    con = sqlite3.connect('banco_programa.db')
+    cursor = con.cursor()
+    cursor.execute('SELECT especialidade FROM veterinario WHERE email = ?', (email,))
+    data = cursor.fetchone()
+    cursor.close()
+    con.close()
+    if data:
+        data = data[0]
+    return data
+
 
 def login_veterinario(email, senha, situacao):
     con = sqlite3.connect('banco_programa.db')
