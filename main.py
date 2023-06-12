@@ -5,7 +5,6 @@ import Banco.banco_dados as Banco
 import Page.cadastro as PageCadastro , Page.usuario as PageUsuario, Page.veterinario as PageVeterinario, Page.adm as PageAdm, Page.login as PageLogin
 from sqlite3 import Error
 
-
 def create_connection():
     conn = None
     try:
@@ -37,7 +36,32 @@ texto = st.empty()
 #Abaixo o contúdo da página incial
 
 title = titulo.title('Tela principal')
-text = texto.text('Em construção 🏗')
+
+especialidade = Banco.busca_especialidade_geral()
+branco = []
+especialidades = st.empty()
+banco_lista = st.empty()
+texto_inicio = st.empty()
+mapa_st = st.empty()
+
+especialidade_selecionada = especialidades.selectbox('Selecione a Especialidade: ' ,especialidade, key='232322')
+
+if especialidade_selecionada:
+    texto_inicio.text(f"Médicos disponíveis para a especialidade: {especialidade_selecionada}")
+    medicos = Banco.busca_medicos_por_especialidade(especialidade_selecionada)
+        
+    lista_medicos = pd.DataFrame(medicos, columns=['Médico', 'Especialidade', 'Localidade', 'Telefone'])
+    banco_lista.dataframe(lista_medicos)
+
+    # Criar DataFrame com coordenadas de Aracaju
+data = {'LAT': [-10.9472], 'LON': [-37.0731]}
+df = pd.DataFrame(data)
+
+# Exibir mapa no Streamlit
+texto_inicio.title("Localização dos médicos disponíveis")
+mapa_medicos = mapa_st.map(df)
+
+    
 
 
 login, cadastro = start_bar.tabs(["Login", "Cadastro"])
@@ -72,6 +96,10 @@ if st.session_state.login:
         checkbox_placeholder.empty()
         titulo.empty()
         texto.empty()
+        especialidades.empty()
+        banco_lista.empty()
+        texto_inicio.empty()
+        mapa_st.empty()
 
         Page = PageUsuario.Usuario(nome)
 
@@ -82,6 +110,10 @@ if st.session_state.login:
         checkbox_placeholder.empty()
         titulo.empty()
         texto.empty()
+        especialidades.empty()
+        banco_lista.empty()
+        texto_inicio.empty()
+        mapa_st.empty()
 
         PageVeterinario.Veterinario(nome)
 
@@ -91,8 +123,12 @@ if st.session_state.login:
         texto.empty()
         start_bar.empty()
         checkbox_placeholder.empty()
-        PageAdm.Adm()
-                    
+        especialidades.empty()
+        banco_lista.empty()
+        texto_inicio.empty()
+        mapa_st.empty()
+
+        PageAdm.Adm()               
         
     else:
         st.warning("Usuário incorreto ou Inexistente")
