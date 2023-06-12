@@ -8,7 +8,7 @@ def Adm():
                                                                     'Gerenciar Veterinários'])
     sair = st.sidebar.button('Sair')
     if area_mestre == 'Inicio':
-        st.title('Bem vindo mestre, o sistema do site é seu')
+        st.title('Bem vindo mestre, o sistema do site é seu 🍷 🗿')
 
     if area_mestre == 'Adicionar Veterinário':
         st.title('Vamos adicionar o mais novo Veterinário ao Sistema')
