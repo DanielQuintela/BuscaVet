@@ -15,16 +15,23 @@ def Veterinario(email):
     
     if area == 'Inicio':
         st.text('inicio')
-        meus_pets, em_andamento, Histórico_servico = st.tabs(["Meus Pets", "Histórico de Serviços", "Em Andamento"])
+        minha_agenda, em_andamento, Histórico_servico = st.tabs(["Minha Agenda" , "Em Andamento", "Histórico de Serviços"])
 
-        with meus_pets:
-            st.title('Pets')
+        with minha_agenda:
+            st.title('Minha Agenda')
+
+            minha_especialidade = Banco.busca_especialidade_nome(email)
+
+            st.text(f'Minha Especialidade Atual {minha_especialidade[0]}')
+            st.text(f'Minha Area de Atuação Atual {minha_especialidade[1]}')
             
         with em_andamento:
-            st.title('Teste 2')
+            st.title('Em Andamento')
+
+            st.text('Nenhum Agendamento Marcado')
 
         with Histórico_servico:
-            st.title('Teste 3')
+            st.title('Histórico Vazio, Por enquanto 😉')
             
     if area == 'Alterar dados':
         st.title('Cadastre seus dados específicos')
@@ -33,14 +40,16 @@ def Veterinario(email):
 
         if st.button('Salvar'):
             Banco.especialidade(email, input_especialidade, input_localidade)
-            especialidade = Banco.busca_especialidade(email)
-            st.text(f'Sua especilidade é {especialidade}')
+           
+
     if area == 'Cadastrar Clínica':
         st.title("Seja bem vindo a tela de cadastro de Clínicas")
+        
         
     if sair:
         main.fechar()
             
        
 
-   
+    
+        
