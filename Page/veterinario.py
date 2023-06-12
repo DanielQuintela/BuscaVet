@@ -40,6 +40,8 @@ def Veterinario(email):
 
         if st.button('Salvar'):
             Banco.especialidade(email, input_especialidade, input_localidade)
+
+            st.success('Dados Atualizados ! 🍷 🗿')
            
 
     if area == 'Cadastrar Clínica':
@@ -51,5 +53,4 @@ def Veterinario(email):
             
        
 
-    
-        
+   
