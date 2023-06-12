@@ -22,13 +22,13 @@ def Veterinario(email):
 
             minha_especialidade = Banco.busca_especialidade_nome(email)
 
-            st.text(f'Minha Especialidade Atual {minha_especialidade[0]}')
-            st.text(f'Minha Area de Atuação Atual {minha_especialidade[1]}')
+            st.write(f'Minha Especialidade Atual {minha_especialidade[0]}')
+            st.write(f'Minha Area de Atuação Atual {minha_especialidade[1]}')
             
         with em_andamento:
             st.title('Em Andamento')
 
-            st.text('Nenhum Agendamento Marcado')
+            st.write('Nenhum Agendamento Marcado')
 
         with Histórico_servico:
             st.title('Histórico Vazio, Por enquanto 😉')
