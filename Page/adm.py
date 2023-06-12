@@ -1,11 +1,12 @@
 import pandas as pd
 import streamlit as st
 import sqlite3
-import Banco.banco_dados as Banco
+import Banco.banco_dados as Banco, main
 
 def Adm():
     area_mestre = st.selectbox('Selecione oque deseja',['Inicio','Adicionar Veterinário',
                                                                     'Gerenciar Veterinários'])
+    sair = st.sidebar.button('Sair')
     if area_mestre == 'Inicio':
         st.title('Bem vindo mestre, o sistema do site é seu')
 
@@ -48,3 +49,6 @@ def Adm():
                 Banco.delete_vet(selecao)
                 st.warning(f"Removido(a): '{selecao}' do Sistema")
                 st.warning('Atualize a Página')
+
+    if sair:
+        main.fechar()
