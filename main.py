@@ -37,6 +37,7 @@ texto = st.empty()
 
 title = titulo.title('Tela principal')
 
+Banco.create_veterinario()
 especialidade = Banco.busca_especialidade_geral()
 branco = []
 especialidades = st.empty()
