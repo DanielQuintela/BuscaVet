@@ -132,5 +132,5 @@ if st.session_state.login:
         PageAdm.Adm()               
         
     else:
-        st.warning("Usuário incorreto ou Inexistente")
+        st.sidebar.warning("Usuário incorreto ou Inexistente")
 
