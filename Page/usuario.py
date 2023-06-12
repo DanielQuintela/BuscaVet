@@ -43,11 +43,11 @@ def Usuario(email):
             
         with em_andamento:
             st.title('Serviços em Andamento')
-            st.text('Nenhum serviço em Andamento')
+            st.write('Nenhum serviço em Andamento')
 
         with Histórico_servico:
             st.title('Histórico de Serviço')
-            st.text('Histórico Vazio')
+            st.write('Histórico Vazio')
         
         with buscar_servico:
             st.title('Escolha as opções a baixo')
