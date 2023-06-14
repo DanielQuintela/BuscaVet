@@ -4,7 +4,7 @@ import sqlite3
 import Banco.banco_dados as Banco
 import Page.cadastro as PageCadastro , Page.usuario as PageUsuario, Page.veterinario as PageVeterinario, Page.adm as PageAdm, Page.login as PageLogin
 from sqlite3 import Error
-
+st.set_page_config(page_title='BuscaVet', page_icon=':mag:')
 def create_connection():
     conn = None
     try:
